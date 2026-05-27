@@ -100,6 +100,7 @@ export default function ContactForm() {
                     onChange={handleChange}
                     placeholder="Ditt namn"
                     className={inputBase}
+                    suppressHydrationWarning
                   />
                 </div>
                 <div className="bg-background border border-border focus-within:border-rust transition-colors">
@@ -114,6 +115,7 @@ export default function ContactForm() {
                     onChange={handleChange}
                     placeholder="070 000 00 00"
                     className={inputBase}
+                    suppressHydrationWarning
                   />
                 </div>
               </div>
@@ -141,6 +143,7 @@ export default function ContactForm() {
                   className="bg-rust text-foreground font-heading font-bold uppercase tracking-[0.35em] text-xs px-10 py-5 hover:bg-rust-hover transition-colors cursor-pointer"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
+                  suppressHydrationWarning
                 >
                   SKICKA FÖRFRÅGAN
                 </motion.button>

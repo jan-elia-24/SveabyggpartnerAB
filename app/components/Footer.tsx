@@ -18,7 +18,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-16 gap-y-4">
+          <div className="grid grid-cols-2 gap-x-8 md:gap-x-16 gap-y-4">
             <div>
               <p className="font-heading uppercase tracking-[0.3em] text-[10px] text-muted mb-2">
                 Telefon
@@ -64,7 +64,7 @@ export default function Footer() {
           <p className="font-sans text-muted text-xs">
             © {year} Younan Bygg & Hantverk AB. Alla rättigheter förbehållna.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
             {["F-skattsedel", "ROT-avdrag", "Ansvarsförsäkring"].map((t) => (
               <span
                 key={t}

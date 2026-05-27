@@ -46,7 +46,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Main content */}
-      <div className="relative z-10 px-10 md:px-16 pb-24">
+      <div className="relative z-10 px-8 md:px-16 pb-16 md:pb-24">
         <motion.p
           className="font-heading uppercase tracking-[0.45em] text-rust text-xs mb-6"
           initial={{ opacity: 0, x: -20 }}
@@ -79,8 +79,8 @@ export default function Hero() {
         />
 
         <motion.p
-          className="font-heading uppercase tracking-[0.28em] text-muted leading-loose"
-          style={{ fontSize: "clamp(0.75rem, 2vw, 1.1rem)" }}
+          className="font-heading uppercase tracking-[0.15em] md:tracking-[0.28em] text-muted leading-loose"
+          style={{ fontSize: "clamp(0.85rem, 2.5vw, 1.1rem)" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.9 }}
@@ -105,7 +105,7 @@ export default function Hero() {
 
       {/* Scroll hint */}
       <motion.div
-        className="absolute bottom-8 right-10 flex flex-col items-center gap-2"
+        className="absolute bottom-8 right-10 hidden sm:flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
