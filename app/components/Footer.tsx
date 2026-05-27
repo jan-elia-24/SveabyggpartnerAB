@@ -9,9 +9,9 @@ export default function Footer() {
           <div>
             <p
               className="font-heading font-bold uppercase text-foreground leading-none"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+              style={{ fontSize: "clamp(1.8rem, 4.5vw, 5rem)" }}
             >
-              YOUNAN
+              SVEA BYGGPARTNER AB
             </p>
             <p className="font-heading uppercase tracking-[0.35em] text-rust text-xs mt-3">
               Bygg & Hantverk
@@ -62,13 +62,13 @@ export default function Footer() {
         {/* Bottom row */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <p className="font-sans text-muted text-xs">
-            © {year} Younan Bygg & Hantverk AB. Alla rättigheter förbehållna.
+            © {year} Svea Byggpartner AB. Alla rättigheter förbehållna.
           </p>
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
+          <div className="flex flex-wrap gap-2">
             {["F-skattsedel", "ROT-avdrag", "Ansvarsförsäkring"].map((t) => (
               <span
                 key={t}
-                className="font-heading uppercase tracking-widest text-[9px] text-border"
+                className="font-heading uppercase tracking-widest text-[9px] text-rust border border-rust px-2 py-1"
               >
                 {t}
               </span>

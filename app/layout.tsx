@@ -14,10 +14,19 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Younan – Bygg & Hantverk",
+  title: "Svea Byggpartner AB – Bygg & Hantverk",
   description:
     "Professionella hantverkstjänster med precision och stolthet. Renovering, byggarbeten och mer i Stockholmsregionen.",
 };
+
+// Runs before React hydrates — prevents flash of wrong theme
+const themeScript = `
+  try {
+    var t = localStorage.getItem('theme');
+    if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch(e) {}
+`;
 
 export default function RootLayout({
   children,
@@ -25,7 +34,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sv" className={`${oswald.variable} ${inter.variable}`}>
+    <html lang="sv" className={`${oswald.variable} ${inter.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-screen" suppressHydrationWarning>
         {children}
       </body>
