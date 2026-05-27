@@ -6,11 +6,12 @@ import { motion, AnimatePresence } from "framer-motion";
 type FormState = {
   name: string;
   phone: string;
+  email: string;
   message: string;
 };
 
 export default function ContactForm() {
-  const [form, setForm] = useState<FormState>({ name: "", phone: "", message: "" });
+  const [form, setForm] = useState<FormState>({ name: "", phone: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
 
   function handleChange(
@@ -120,7 +121,24 @@ export default function ContactForm() {
                 </div>
               </div>
 
-              {/* Row 2: Message */}
+              {/* Row 2: Email */}
+              <div className="bg-background border border-border focus-within:border-rust transition-colors mb-[1px]">
+                <label className="block font-heading uppercase tracking-[0.35em] text-rust text-[10px] px-6 pt-5 pb-1">
+                  E-post *
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  value={form.email}
+                  onChange={handleChange}
+                  placeholder="din@email.se"
+                  className={inputBase}
+                  suppressHydrationWarning
+                />
+              </div>
+
+              {/* Row 3: Message */}
               <div className="bg-background border border-border focus-within:border-rust transition-colors">
                 <label className="block font-heading uppercase tracking-[0.35em] text-rust text-[10px] px-6 pt-5 pb-1">
                   Meddelande *

@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* ── Dark theme (default) ─────────────────────────────────── */
+/* ── Theme ────────────────────────────────────────────────── */
 :root {
   --background: #18140e;
   --surface: #221b12;
@@ -11,32 +11,6 @@
   --rust-hover: #d4682c;
   --amber: #c8921e;
   --border: #3a2e20;
-}
-
-/* ── Dark theme explicit (for sections that must stay dark, e.g. hero with video) */
-[data-theme="dark"] {
-  --background: #18140e;
-  --surface: #221b12;
-  --card: #2c2318;
-  --foreground: #f0e8d8;
-  --muted: #7a6a58;
-  --rust: #c85a1e;
-  --rust-hover: #d4682c;
-  --amber: #c8921e;
-  --border: #3a2e20;
-}
-
-/* ── Light theme ──────────────────────────────────────────── */
-[data-theme="light"] {
-  --background: #f2ede4;
-  --surface: #e8e2d8;
-  --card: #dfd9ce;
-  --foreground: #18140e;
-  --muted: #6a5e50;
-  --rust: #b84e18;
-  --rust-hover: #c85a1e;
-  --amber: #a87818;
-  --border: #c4b8a8;
 }
 
 @theme inline {

@@ -1,11 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import ThemeToggle from "./ThemeToggle";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen bg-background overflow-hidden flex flex-col justify-end" data-theme="dark">
+    <section className="relative min-h-screen bg-background overflow-hidden flex flex-col justify-end">
       {/* Background video — place hero.mp4 in /public to activate */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
@@ -49,23 +48,20 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        <div className="flex items-center gap-6 md:gap-10 ml-auto">
-          <nav className="hidden md:flex gap-10">
-            {[
-              { label: "Jobb", href: "#jobb" },
-              { label: "Kontakt", href: "#kontakt" },
-            ].map(({ label, href }) => (
-              <a
-                key={href}
-                href={href}
-                className="font-heading uppercase tracking-widest text-xs text-[#7a6a58] hover:text-[#c85a1e] transition-colors"
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
-          <ThemeToggle />
-        </div>
+        <nav className="hidden md:flex gap-10 ml-auto">
+          {[
+            { label: "Jobb", href: "#jobb" },
+            { label: "Kontakt", href: "#kontakt" },
+          ].map(({ label, href }) => (
+            <a
+              key={href}
+              href={href}
+              className="font-heading uppercase tracking-widest text-xs text-[#7a6a58] hover:text-[#c85a1e] transition-colors"
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
       </motion.div>
 
       {/* Main content */}

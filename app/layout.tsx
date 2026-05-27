@@ -19,26 +19,14 @@ export const metadata: Metadata = {
     "Professionella hantverkstjänster med precision och stolthet. Renovering, byggarbeten och mer i Stockholmsregionen.",
 };
 
-// Runs before React hydrates — prevents flash of wrong theme
-const themeScript = `
-  try {
-    var t = localStorage.getItem('theme');
-    if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', t);
-  } catch(e) {}
-`;
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sv" className={`${oswald.variable} ${inter.variable}`} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
-      <body className="min-h-screen" suppressHydrationWarning>
+    <html lang="sv" className={`${oswald.variable} ${inter.variable}`}>
+      <body className="min-h-screen">
         {children}
       </body>
     </html>
