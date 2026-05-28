@@ -127,12 +127,17 @@ export default function Services() {
               {/* Items */}
               <ul className="space-y-3">
                 {cat.items.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
+                  <motion.li
+                    key={item}
+                    className="flex items-start gap-3 cursor-default"
+                    whileHover={{ scale: 1.04, x: 4 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                  >
                     <span className="mt-[7px] w-[5px] h-[5px] shrink-0 bg-rust" />
                     <span className="font-sans text-foreground text-sm leading-relaxed">
                       {item}
                     </span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>
