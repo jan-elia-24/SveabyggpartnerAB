@@ -44,6 +44,10 @@ const categories = [
     label: "Tillbyggnader",
     items: [
       "Utbyggnader & tillbyggnader",
+      "Garage & carport",
+      "Friggebod & Attefallsåtgärd",
+      "Vindsinredning",
+      "Inglasning av balkong & altan",
     ],
   },
   {
