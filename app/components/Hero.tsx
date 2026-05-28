@@ -105,8 +105,9 @@ export default function Hero() {
           className="inline-flex items-center gap-4 mt-12 px-8 py-4 bg-[#c85a1e] text-[#f0e8d8] font-heading uppercase tracking-[0.3em] text-xs hover:bg-[#d4682c] transition-colors"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1.3 }}
-          whileHover={{ x: 4 }}
+          transition={{ opacity: { duration: 0.5, delay: 1.3 }, filter: { duration: 0.2 }, x: { duration: 0.2 } }}
+          style={{ filter: "drop-shadow(0 0 0px transparent)" }}
+          whileHover={{ x: 4, filter: "drop-shadow(0 0 8px #c85a1e) drop-shadow(0 0 18px #c85a1e) drop-shadow(0 0 32px rgba(200,90,30,0.6))" }}
         >
           Kontakta oss
           <span className="text-lg leading-none">→</span>

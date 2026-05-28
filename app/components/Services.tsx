@@ -130,7 +130,13 @@ export default function Services() {
                   <motion.li
                     key={item}
                     className="flex items-start gap-3 cursor-default"
-                    whileHover={{ scale: 1.04, x: 4 }}
+                    initial={{ filter: "drop-shadow(0 0 0px transparent)" }}
+                    whileHover={{
+                      scale: 1.04,
+                      x: 4,
+                      filter:
+                        "drop-shadow(0 0 6px #c85a1e) drop-shadow(0 0 14px #c85a1e) drop-shadow(0 0 28px rgba(200,90,30,0.6))",
+                    }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
                   >
                     <span className="mt-[7px] w-[5px] h-[5px] shrink-0 bg-rust" />

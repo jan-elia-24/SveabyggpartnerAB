@@ -159,7 +159,8 @@ export default function ContactForm() {
                 <motion.button
                   type="submit"
                   className="bg-rust text-foreground font-heading font-bold uppercase tracking-[0.35em] text-xs px-10 py-5 hover:bg-rust-hover transition-colors cursor-pointer"
-                  whileHover={{ scale: 1.02 }}
+                  initial={{ filter: "drop-shadow(0 0 0px transparent)" }}
+                  whileHover={{ scale: 1.02, filter: "drop-shadow(0 0 8px #c85a1e) drop-shadow(0 0 18px #c85a1e) drop-shadow(0 0 32px rgba(200,90,30,0.6))" }}
                   whileTap={{ scale: 0.97 }}
                   suppressHydrationWarning
                 >
