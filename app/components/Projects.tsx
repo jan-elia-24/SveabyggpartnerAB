@@ -2,88 +2,90 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
+import Image from "next/image";
 import Lightbox, { type Project } from "./Lightbox";
+import type { MediaItem } from "./Lightbox";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const projects: Project[] = [
   {
-    title: "Badrumsrenovering",
-    category: "Renovering",
-    location: "Stockholm",
-    detail: "Klinker, inbyggd dusch & golvvärme",
-    gradient: "linear-gradient(145deg, #1e2535 0%, #252f42 40%, #181e2c 100%)",
-    images: [
-      "linear-gradient(145deg, #1e2535 0%, #252f42 40%, #181e2c 100%)",
-      "linear-gradient(165deg, #1a2030 0%, #2a3548 50%, #151a25 100%)",
-      "linear-gradient(120deg, #22283a 0%, #1e2a3c 50%, #1c2232 100%)",
-      "linear-gradient(155deg, #202838 0%, #283040 60%, #181e2a 100%)",
-    ],
+    title: "Altan och Trädäck",
+    category: "Utomhus",
+    location: "Eskilstuna",
+    detail: "Trädäck & altan med tryckimpregnerat virke",
+    gradient: "linear-gradient(145deg, #1a2e18 0%, #243d20 40%, #131f12 100%)",
+    media: [
+      { type: "image", src: "/altan/18895880-bc56-429f-bd50-3e20a990387c.jpg" },
+      { type: "image", src: "/altan/22b4258d-6bc0-4831-bdf8-b523f9570925.jpg" },
+      { type: "image", src: "/altan/541b46f2-a3da-4dcf-8a2d-339cdcffb247.jpg" },
+      { type: "image", src: "/altan/595b9dc2-5467-4cbd-8865-c065a5644835.jpg" },
+      { type: "image", src: "/altan/83f2e2d0-31f8-48bf-a0ee-b195ed03dfc6.jpg" },
+      { type: "image", src: "/altan/a34eb57e-0b18-4dd2-b445-71cee8f5a122.jpg" },
+    ] as MediaItem[],
   },
   {
-    title: "Köksnova",
-    category: "Inredning",
-    location: "Bromma",
+    title: "Köksrenovering",
+    category: "Renovering",
+    location: "Eskilstuna",
     detail: "Helrenovering med nya ytor & belysning",
     gradient: "linear-gradient(145deg, #3a2010 0%, #5c381e 50%, #2a1808 100%)",
-    images: [
-      "linear-gradient(145deg, #3a2010 0%, #5c381e 50%, #2a1808 100%)",
-      "linear-gradient(160deg, #2e1a0c 0%, #4e3018 50%, #221408 100%)",
-      "linear-gradient(130deg, #402214 0%, #5a3420 50%, #301808 100%)",
-      "linear-gradient(150deg, #3c2212 0%, #542e18 50%, #2c1a08 100%)",
-    ],
+    media: [
+      { type: "image", src: "/koksrenovering/01bba256-7145-4350-99f1-ed16753f94c6.jpg" },
+      { type: "image", src: "/koksrenovering/3eff03d3-39d7-4a84-99dd-6af9087d4821.jpg" },
+      { type: "image", src: "/koksrenovering/410c6f33-628b-4f95-a4b8-f32b0dd9f7b8.jpg" },
+      { type: "image", src: "/koksrenovering/65ad7cfe-5a36-456b-ac65-a12d50ab0a31.jpg" },
+      { type: "image", src: "/koksrenovering/8b00209f-1605-4499-b75d-2b61c0a9d3e2.jpg" },
+    ] as MediaItem[],
   },
   {
-    title: "Fasadarbete",
-    category: "Exteriör",
-    location: "Solna",
-    detail: "Puts, isolering & fasadmålning",
-    gradient: "linear-gradient(145deg, #4a2e18 0%, #6a4228 55%, #352010 100%)",
-    images: [
-      "linear-gradient(145deg, #4a2e18 0%, #6a4228 55%, #352010 100%)",
-      "linear-gradient(160deg, #3e2812 0%, #583820 50%, #2c1c0c 100%)",
-      "linear-gradient(130deg, #482c16 0%, #644020 50%, #321a0c 100%)",
-      "linear-gradient(155deg, #422a14 0%, #5c3c22 50%, #2e1c0a 100%)",
-    ],
+    title: "Takrenovering / Takbyte",
+    category: "Tak",
+    location: "Stockholm",
+    detail: "Komplett takbyte med nytt taktäckningsmaterial",
+    gradient: "linear-gradient(145deg, #1c1c2e 0%, #2a2a42 55%, #141420 100%)",
+    media: [
+      { type: "image", src: "/takbyte/4b975c6c-3b99-4bf0-9ee1-563381fc6d95.jpg" },
+      { type: "image", src: "/takbyte/8dc8f3e6-9aa8-4efe-9037-7346f5bc849d.jpg" },
+      { type: "video", src: "/takbyte/04067cf2-d2e9-4586-af48-79997cb2eea2.mp4" },
+      { type: "video", src: "/takbyte/62185dac-08c6-447f-ac9c-07d0360bbac4.mp4" },
+      { type: "video", src: "/takbyte/992588bf-ca91-446d-99cf-33c5df572939.mp4" },
+    ] as MediaItem[],
   },
   {
     title: "Golvläggning",
     category: "Golv",
-    location: "Täby",
+    location: "Stockholm",
     detail: "Parkett & naturstensklinker",
     gradient: "linear-gradient(145deg, #4a3010 0%, #7a5020 45%, #362208 100%)",
-    images: [
-      "linear-gradient(145deg, #4a3010 0%, #7a5020 45%, #362208 100%)",
-      "linear-gradient(165deg, #3e2a0c 0%, #6a4418 50%, #2c1c06 100%)",
-      "linear-gradient(125deg, #50340e 0%, #7c5222 50%, #3a2408 100%)",
-      "linear-gradient(150deg, #463010 0%, #724c1e 55%, #342206 100%)",
-    ],
+    media: [
+      { type: "image", src: "/golv/a6bc1d91-af24-4a95-a016-8cc0ccd4fad5.jpg" },
+      { type: "video", src: "/golv/0acdc079-9290-44fa-89ab-19135a17e095.mp4" },
+      { type: "video", src: "/golv/261d20a2-74e4-4acf-97e5-f01661174d14.mp4" },
+      { type: "video", src: "/golv/5056dd2d-38b8-4a09-92f8-8c5b95ca6429.mp4" },
+      { type: "video", src: "/golv/d6c49f5f-0172-44fa-88f4-b559d5c23b51.mp4" },
+    ] as MediaItem[],
   },
   {
-    title: "Rörinstallation",
-    category: "VVS",
-    location: "Nacka",
-    detail: "Komplett vatteninstallation",
+    title: "Ombyggnation / Tillbyggnad",
+    category: "Tillbyggnad",
+    location: "Eskilstuna",
+    detail: "Ombyggnation & tillbyggnad av befintlig fastighet",
     gradient: "linear-gradient(145deg, #1c2030 0%, #283045 50%, #141825 100%)",
-    images: [
-      "linear-gradient(145deg, #1c2030 0%, #283045 50%, #141825 100%)",
-      "linear-gradient(160deg, #181c28 0%, #222c3e 50%, #101420 100%)",
-      "linear-gradient(130deg, #1e2232 0%, #2a3248 50%, #141a26 100%)",
-      "linear-gradient(155deg, #1a1e2e 0%, #242e42 55%, #121620 100%)",
-    ],
+    media: [
+      { type: "image", src: "/ombyggnation/1da0ab00-390f-4ac3-af06-200eb5cacf9d.jpg" },
+      { type: "image", src: "/ombyggnation/fa65c055-dc33-47ee-a852-e3ce75ddfa10.jpg" },
+    ] as MediaItem[],
   },
   {
-    title: "Totalrenovering",
-    category: "Renovering",
-    location: "Lidingö",
-    detail: "240 m² – från stomme till finish",
-    gradient: "linear-gradient(145deg, #481e10 0%, #6a2e18 50%, #3a1408 100%)",
-    images: [
-      "linear-gradient(145deg, #481e10 0%, #6a2e18 50%, #3a1408 100%)",
-      "linear-gradient(165deg, #3c1a0c 0%, #5a2614 50%, #301008 100%)",
-      "linear-gradient(125deg, #4c2010 0%, #6c3018 50%, #3c1408 100%)",
-      "linear-gradient(150deg, #441c0e 0%, #622c18 55%, #361008 100%)",
-    ],
+    title: "Målning",
+    category: "Målning",
+    location: "Eskilstuna",
+    detail: "Invändig & utvändig målning",
+    gradient: "linear-gradient(145deg, #2a1a2e 0%, #3d2845 50%, #1e1220 100%)",
+    media: [
+      { type: "gradient", src: "linear-gradient(145deg, #2a1a2e 0%, #3d2845 50%, #1e1220 100%)" },
+    ] as MediaItem[],
   },
 ];
 
@@ -153,6 +155,18 @@ export default function Projects() {
               onClick={() => setSelected(p)}
               aria-label={`Öppna galleri för ${p.title}`}
             >
+              {/* First image as thumbnail */}
+              {p.media[0]?.type === "image" && (
+                <Image
+                  src={p.media[0].src}
+                  alt={p.title}
+                  fill
+                  className="object-cover"
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              )}
+
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
 

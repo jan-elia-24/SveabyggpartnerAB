@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+
+export type MediaItem =
+  | { type: "gradient"; src: string }
+  | { type: "image"; src: string }
+  | { type: "video"; src: string };
 
 export type Project = {
   title: string;
@@ -9,7 +15,7 @@ export type Project = {
   location: string;
   detail: string;
   gradient: string;
-  images: string[];
+  media: MediaItem[];
 };
 
 type Props = {
@@ -21,10 +27,10 @@ export default function Lightbox({ project, onClose }: Props) {
   const [index, setIndex] = useState(0);
 
   function prev() {
-    setIndex((i) => (i - 1 + project.images.length) % project.images.length);
+    setIndex((i) => (i - 1 + project.media.length) % project.media.length);
   }
   function next() {
-    setIndex((i) => (i + 1) % project.images.length);
+    setIndex((i) => (i + 1) % project.media.length);
   }
 
   useEffect(() => {
@@ -56,7 +62,7 @@ export default function Lightbox({ project, onClose }: Props) {
 
       {/* Panel */}
       <motion.div
-        className="relative z-10 w-full max-w-4xl flex flex-col"
+        className="relative z-10 w-full max-w-6xl flex flex-col"
         initial={{ scale: 0.94, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.94, y: 20 }}
@@ -85,22 +91,45 @@ export default function Lightbox({ project, onClose }: Props) {
           </button>
         </div>
 
-        {/* Image */}
-        <div className="relative overflow-hidden" style={{ height: "clamp(240px, 55vh, 560px)" }}>
+        {/* Media */}
+        <div className="relative overflow-hidden bg-black" style={{ height: "clamp(300px, 75vh, 800px)" }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
               className="absolute inset-0"
-              style={{ background: project.images[index] }}
+              style={project.media[index].type === "gradient" ? { background: project.media[index].src } : {}}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -30 }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-            />
+            >
+              {project.media[index].type === "image" && (
+                <Image
+                  src={project.media[index].src}
+                  alt=""
+                  fill
+                  className="object-contain"
+                  quality={100}
+                  sizes="(max-width: 896px) 100vw, 896px"
+                  unoptimized
+                />
+              )}
+              {project.media[index].type === "video" && (
+                <video
+                  key={project.media[index].src}
+                  src={project.media[index].src}
+                  className="w-full h-full object-contain"
+                  controls
+                  autoPlay
+                  playsInline
+                  preload="auto"
+                />
+              )}
+            </motion.div>
           </AnimatePresence>
 
           {/* Prev / Next */}
-          {project.images.length > 1 && (
+          {project.media.length > 1 && (
             <>
               <button
                 onClick={prev}
@@ -134,14 +163,14 @@ export default function Lightbox({ project, onClose }: Props) {
         <div className="flex items-center justify-between mt-4 px-1">
           <p className="font-sans text-muted text-sm">{project.detail}</p>
           <div className="flex items-center gap-2">
-            {project.images.map((_, i) => (
+            {project.media.map((item, i) => (
               <button
                 key={i}
                 onClick={() => setIndex(i)}
-                className={`w-1.5 h-1.5 transition-colors cursor-pointer ${
+                className={`transition-colors cursor-pointer ${
                   i === index ? "bg-rust" : "bg-border hover:bg-muted"
-                }`}
-                aria-label={`Bild ${i + 1}`}
+                } ${item.type === "video" ? "w-3 h-1.5 rounded-sm" : "w-1.5 h-1.5"}`}
+                aria-label={`${item.type === "video" ? "Video" : "Bild"} ${i + 1}`}
               />
             ))}
           </div>
