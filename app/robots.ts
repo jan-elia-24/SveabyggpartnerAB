@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://sveabyggpartner.vercel.app/sitemap.xml",
+    sitemap: "https://sveabyggpartner-ab.vercel.app/sitemap.xml",
   };
 }
