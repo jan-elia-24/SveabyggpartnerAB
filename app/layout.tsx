@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Oswald, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const oswald = Oswald({
@@ -73,6 +74,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen">
         {children}
+        <Analytics />
       </body>
     </html>
   );
