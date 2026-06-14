@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { sendContact } from "../actions";
 
 type FormState = {
   name: string;
@@ -13,6 +14,8 @@ type FormState = {
 export default function ContactForm() {
   const [form, setForm] = useState<FormState>({ name: "", phone: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -20,9 +23,19 @@ export default function ContactForm() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
+    setLoading(true);
+    setError("");
+    try {
+      const data = new FormData(e.currentTarget);
+      await sendContact(data);
+      setSent(true);
+    } catch {
+      setError("Något gick fel. Försök igen eller ring oss direkt.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   const inputBase =
@@ -66,17 +79,49 @@ export default function ContactForm() {
           {sent ? (
             <motion.div
               key="success"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="border border-rust p-14 text-center max-w-lg"
+              className="max-w-lg"
             >
-              <p className="font-heading font-bold uppercase text-rust text-4xl mb-4">
-                Tack!
-              </p>
-              <p className="font-sans text-muted leading-relaxed">
+              {/* Rust line draws in */}
+              <motion.div
+                className="h-[3px] bg-rust mb-10"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                style={{ transformOrigin: "left" }}
+              />
+
+              {/* TACK! slides in from left */}
+              <motion.p
+                className="font-heading font-bold uppercase text-rust leading-none mb-6"
+                style={{ fontSize: "clamp(3rem, 10vw, 7rem)" }}
+                initial={{ opacity: 0, x: -60 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                TACK!
+              </motion.p>
+
+              {/* Text fades in */}
+              <motion.p
+                className="font-sans text-muted leading-relaxed text-lg"
+                initial={{ opacity: 0, x: -40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
                 Vi har tagit emot ditt meddelande och hör av oss inom 24 timmar.
-              </p>
+              </motion.p>
+
+              {/* Bottom line */}
+              <motion.div
+                className="h-[1px] bg-border mt-10"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.7, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                style={{ transformOrigin: "left" }}
+              />
             </motion.div>
           ) : (
             <motion.form
@@ -155,20 +200,26 @@ export default function ContactForm() {
               </div>
 
               {/* Submit */}
-              <div className="mt-8 flex items-center gap-8">
-                <motion.button
-                  type="submit"
-                  className="bg-rust text-foreground font-heading font-bold uppercase tracking-[0.35em] text-xs px-10 py-5 hover:bg-rust-hover transition-colors cursor-pointer"
-                  initial={{ filter: "drop-shadow(0 0 0px transparent)" }}
-                  whileHover={{ scale: 1.02, filter: "drop-shadow(0 0 8px #c85a1e) drop-shadow(0 0 18px #c85a1e) drop-shadow(0 0 32px rgba(200,90,30,0.6))" }}
-                  whileTap={{ scale: 0.97 }}
-                  suppressHydrationWarning
-                >
-                  SKICKA FÖRFRÅGAN
-                </motion.button>
-                <p className="text-muted font-sans text-sm hidden md:block">
-                  Svar inom 24 timmar
-                </p>
+              <div className="mt-8 flex flex-col gap-4">
+                <div className="flex items-center gap-8">
+                  <motion.button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-rust text-foreground font-heading font-bold uppercase tracking-[0.35em] text-xs px-10 py-5 hover:bg-rust-hover transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                    initial={{ filter: "drop-shadow(0 0 0px transparent)" }}
+                    whileHover={!loading ? { scale: 1.02, filter: "drop-shadow(0 0 8px #c85a1e) drop-shadow(0 0 18px #c85a1e) drop-shadow(0 0 32px rgba(200,90,30,0.6))" } : {}}
+                    whileTap={!loading ? { scale: 0.97 } : {}}
+                    suppressHydrationWarning
+                  >
+                    {loading ? "SKICKAR..." : "SKICKA FÖRFRÅGAN"}
+                  </motion.button>
+                  <p className="text-muted font-sans text-sm hidden md:block">
+                    Svar inom 24 timmar
+                  </p>
+                </div>
+                {error && (
+                  <p className="font-sans text-sm text-rust">{error}</p>
+                )}
               </div>
             </motion.form>
           )}

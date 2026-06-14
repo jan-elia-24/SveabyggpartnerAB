@@ -24,10 +24,10 @@ export default function Footer() {
                 Telefon
               </p>
               <a
-                href="tel:+46700000000"
+                href="tel:+46735550495"
                 className="font-sans text-foreground hover:text-rust transition-colors text-sm"
               >
-                070 000 00 00
+                073 555 04 95
               </a>
             </div>
             <div>
@@ -35,23 +35,23 @@ export default function Footer() {
                 E-post
               </p>
               <a
-                href="mailto:info@younan.se"
+                href="mailto:sveabyggpartner@gmail.com"
                 className="font-sans text-foreground hover:text-rust transition-colors text-sm"
               >
-                info@younan.se
+                sveabyggpartner@gmail.com
               </a>
             </div>
             <div>
               <p className="font-heading uppercase tracking-[0.3em] text-[10px] text-muted mb-2">
                 Område
               </p>
-              <p className="font-sans text-foreground text-sm">Stockholm</p>
+              <p className="font-sans text-foreground text-sm">Hela Sverige</p>
             </div>
             <div>
               <p className="font-heading uppercase tracking-[0.3em] text-[10px] text-muted mb-2">
                 Org.nr
               </p>
-              <p className="font-sans text-foreground text-sm">556XXX-XXXX</p>
+              <p className="font-sans text-foreground text-sm">559574-0522</p>
             </div>
           </div>
         </div>
