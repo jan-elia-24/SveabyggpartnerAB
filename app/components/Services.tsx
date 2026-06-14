@@ -6,11 +6,9 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const categories = [
   {
-    label: "Fasad & Puts",
+    label: "Fasadarbeten",
     items: [
       "Fasadrenovering",
-      "Puts- och fasadarbeten",
-      "Tunn- och tjockputs",
       "Fasadtvätt",
       "Omfärgning av befintlig fasad",
     ],
@@ -20,13 +18,12 @@ const categories = [
     items: [
       "Takmålning",
       "Taktvättning & underhåll",
-      "Skorstensslamning",
+      "Takbyte & takomläggning",
     ],
   },
   {
     label: "Murning & Betong",
     items: [
-      "Tegelfasad",
       "Stödmurar",
       "Murning i leca- och ytongblock",
       "Betongplatta & betongaltan",
@@ -36,8 +33,10 @@ const categories = [
     label: "Måleri & Snickeri",
     items: [
       "Målningsarbeten inomhus & utomhus",
-      "Snickeri",
-      "Slamning av murstockar",
+      "Fönster- & dörrbyte",
+      "Byggnation av trappa, räcke & staket",
+      "Kökrenovering",
+      "Golvläggning",
     ],
   },
   {
@@ -121,7 +120,7 @@ export default function Services() {
               className="bg-card px-8 py-8"
             >
               {/* Category label */}
-              <p className="font-heading uppercase tracking-[0.4em] text-rust text-[10px] mb-4">
+              <p className="font-heading uppercase tracking-[0.4em] text-rust text-sm mb-4">
                 {cat.label}
               </p>
 

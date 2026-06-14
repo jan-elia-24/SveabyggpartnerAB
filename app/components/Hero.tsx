@@ -50,6 +50,7 @@ export default function Hero() {
       >
         <nav className="hidden md:flex gap-10 ml-auto">
           {[
+            { label: "Om oss", href: "#om-oss" },
             { label: "Jobb", href: "#jobb" },
             { label: "Kontakt", href: "#kontakt" },
           ].map(({ label, href }) => (
