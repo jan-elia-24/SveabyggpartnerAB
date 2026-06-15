@@ -1,11 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const navLinks = [
+  { label: "Om oss", href: "#om-oss" },
+  { label: "Jobb", href: "#jobb" },
+  { label: "Kontakt", href: "#kontakt" },
+];
 
 export default function Hero() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen bg-background overflow-hidden flex flex-col justify-end">
-      {/* Background video — place hero.mp4 in /public to activate */}
+      {/* Background video */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
@@ -18,10 +27,10 @@ export default function Hero() {
         <source src="/hero.mp4" type="video/mp4" />
       </video>
 
-      {/* Dark overlay so text stays readable over video */}
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/60" />
 
-      {/* Gradient at bottom for extra contrast */}
+      {/* Gradient at bottom */}
       <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
 
       {/* Grain texture */}
@@ -33,7 +42,7 @@ export default function Hero() {
         }}
       />
 
-      {/* Left accent bar — decorative only */}
+      {/* Left accent bar */}
       <motion.div
         className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#c85a1e] pointer-events-none"
         initial={{ scaleY: 0, originY: 0 }}
@@ -41,19 +50,16 @@ export default function Hero() {
         transition={{ duration: 1.2, ease: "easeOut" }}
       />
 
-      {/* Nav — z-20 so it stays above all content layers */}
+      {/* Nav */}
       <motion.div
-        className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-8 md:px-10 py-7"
+        className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-8 md:px-10 py-7"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
+        {/* Desktop nav */}
         <nav className="hidden md:flex gap-10 ml-auto">
-          {[
-            { label: "Om oss", href: "#om-oss" },
-            { label: "Jobb", href: "#jobb" },
-            { label: "Kontakt", href: "#kontakt" },
-          ].map(({ label, href }) => (
+          {navLinks.map(({ label, href }) => (
             <a
               key={href}
               href={href}
@@ -63,14 +69,52 @@ export default function Hero() {
             </a>
           ))}
         </nav>
+
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden ml-auto font-heading uppercase tracking-[0.3em] text-xs cursor-pointer transition-colors"
+          style={{ color: menuOpen ? "#c85a1e" : "#7a6a58" }}
+          onClick={() => setMenuOpen((o) => !o)}
+          aria-label="Meny"
+        >
+          {menuOpen ? "STÄNG" : "MENY"}
+        </button>
       </motion.div>
+
+      {/* Mobile menu overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-10 md:hidden"
+            style={{ backgroundColor: "#0a0a0a" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            {navLinks.map(({ label, href }, i) => (
+              <motion.a
+                key={href}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                className="font-heading font-bold uppercase tracking-[0.3em] text-2xl text-[#f0e8d8] hover:text-[#c85a1e] transition-colors"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.08, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {label}
+              </motion.a>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Main content */}
       <div className="relative z-10 px-8 md:px-16 pb-16 md:pb-24">
         <div className="overflow-hidden">
           <motion.h1
             className="font-heading font-bold uppercase leading-[0.88]"
-            style={{ fontSize: "clamp(2rem, 7vw, 9rem)", color: "#f0e8d8" }}
+            style={{ fontSize: "clamp(3.5rem, 7vw, 9rem)", color: "#f0e8d8" }}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
@@ -115,7 +159,7 @@ export default function Hero() {
         </motion.a>
       </div>
 
-      {/* Scroll hint — hidden on small screens */}
+      {/* Scroll hint */}
       <motion.div
         className="absolute bottom-8 right-10 hidden sm:flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
