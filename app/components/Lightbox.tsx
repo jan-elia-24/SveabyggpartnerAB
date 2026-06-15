@@ -109,9 +109,8 @@ export default function Lightbox({ project, onClose }: Props) {
                   alt=""
                   fill
                   className="object-contain"
-                  quality={100}
+                  quality={90}
                   sizes="(max-width: 896px) 100vw, 896px"
-                  unoptimized
                 />
               )}
               {project.media[index].type === "video" && (

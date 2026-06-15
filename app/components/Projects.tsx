@@ -164,6 +164,7 @@ export default function Projects() {
                   className="object-cover"
                   quality={85}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={i === 0}
                 />
               )}
 
