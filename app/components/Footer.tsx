@@ -97,7 +97,7 @@ export default function Footer() {
             {["F-skattsedel", "ROT-avdrag", "Ansvarsförsäkring"].map((t) => (
               <span
                 key={t}
-                className="font-heading uppercase tracking-widest text-[9px] text-rust border border-rust px-2 py-1"
+                className="font-heading uppercase tracking-widest text-[9px] text-rust border border-rust px-2 py-1 cursor-default transition-all duration-300 hover:bg-rust hover:text-foreground hover:[box-shadow:0_0_8px_#c85a1e,0_0_20px_rgba(200,90,30,0.5)]"
               >
                 {t}
               </span>

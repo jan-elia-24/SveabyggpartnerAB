@@ -201,6 +201,7 @@ export default function ContactForm() {
 
               {/* Submit */}
               <div className="mt-8 flex flex-col gap-4">
+                <p className="font-sans text-muted text-xs">* Obligatoriska fält</p>
                 <div className="flex items-center gap-8">
                   <motion.button
                     type="submit"
