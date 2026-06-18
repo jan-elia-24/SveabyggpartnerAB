@@ -27,7 +27,7 @@ export default function Footer() {
               </p>
               <a
                 href="tel:+46735550495"
-                className="font-sans text-foreground hover:text-rust transition-colors text-sm"
+                className="font-sans text-foreground hover:text-rust active:text-rust transition-colors text-sm inline-block py-1"
               >
                 073 555 04 95
               </a>
@@ -38,7 +38,7 @@ export default function Footer() {
               </p>
               <a
                 href="mailto:sveabyggpartner@gmail.com"
-                className="font-sans text-foreground hover:text-rust transition-colors text-sm"
+                className="font-sans text-foreground hover:text-rust active:text-rust transition-colors text-sm inline-block py-1"
               >
                 sveabyggpartner@gmail.com
               </a>
