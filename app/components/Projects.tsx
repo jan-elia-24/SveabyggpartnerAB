@@ -191,7 +191,7 @@ export default function Projects() {
                 <h3 className="font-heading font-bold uppercase text-foreground text-xl leading-tight">
                   {p.title}
                 </h3>
-                <p className="font-sans text-muted text-sm mt-2 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                <p className="font-sans text-muted text-sm mt-2 opacity-100 md:opacity-0 md:translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                   {p.detail}
                 </p>
               </div>

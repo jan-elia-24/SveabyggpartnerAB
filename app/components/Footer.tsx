@@ -7,8 +7,8 @@ export default function Footer() {
     <footer className="bg-card border-t border-border">
       <div className="px-10 md:px-16 pt-16 pb-10">
         {/* Top row */}
-        <div className="flex flex-col md:flex-row justify-between items-start gap-10 mb-14">
-          <div>
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-10 mb-14">
+          <div className="text-center md:text-left">
             <p
               className="font-heading font-bold uppercase text-foreground leading-none"
               style={{ fontSize: "clamp(1.8rem, 4.5vw, 5rem)" }}
@@ -20,7 +20,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-8 md:gap-x-16 gap-y-4">
+          <div className="grid grid-cols-2 gap-x-8 md:gap-x-16 gap-y-4 text-center md:text-left">
             <div>
               <p className="font-heading uppercase tracking-[0.3em] text-[10px] text-muted mb-2">
                 Telefon
@@ -62,14 +62,14 @@ export default function Footer() {
         <div className="h-[1px] bg-border mb-8" />
 
         {/* Bottom row — 3 columns */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           {/* Left: copyright */}
-          <p className="font-sans text-muted text-xs">
+          <p className="font-sans text-muted text-xs text-center md:text-left">
             © {year} Svea Byggpartner AB. Alla rättigheter förbehållna.
           </p>
 
           {/* Center: developer credit */}
-          <div className="flex flex-col items-start md:items-center gap-1.5">
+          <div className="flex flex-col items-center gap-1.5">
             <p className="font-sans text-muted text-xs">
               Utvecklad av <span className="name-shimmer">Jan Elia</span>
             </p>
@@ -91,7 +91,7 @@ export default function Footer() {
           </div>
 
           {/* Right: badges */}
-          <div className="flex flex-wrap gap-2 md:justify-end">
+          <div className="flex flex-wrap gap-2 justify-center md:justify-end">
             {["F-skattsedel", "ROT-avdrag", "Ansvarsförsäkring"].map((t) => (
               <span
                 key={t}
