@@ -25,6 +25,7 @@
   --color-border: var(--border);
   --font-heading: var(--font-oswald);
   --font-sans: var(--font-inter);
+  --font-signature: var(--font-cormorant);
 }
 
 html {
@@ -56,4 +57,21 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: var(--border);
+}
+
+@keyframes name-shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.name-shimmer {
+  font-family: var(--font-cormorant), serif;
+  font-weight: 400;
+  font-size: 1rem;
+  background: linear-gradient(90deg, var(--foreground) 20%, var(--rust) 50%, var(--foreground) 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: name-shimmer 4s linear infinite;
 }
